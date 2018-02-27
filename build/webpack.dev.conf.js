@@ -1,17 +1,17 @@
 'use strict'
 const utils = require('./utils')
-const webpack = require('webpack')
-const config = require('../config')
+const webpack = require('webpack')// 使用 webpack
+const config = require('../config')// 获取 config/index.js 的默认配置
 const merge = require('webpack-merge')
-const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
+const path = require('path')// 使用 NodeJS 自带的文件路径工具
+const baseWebpackConfig = require('./webpack.base.conf')// 使用 dev 环境的 webpack 配置
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
-const PORT = process.env.PORT && Number(process.env.PORT)
+const PORT = process.env.PORT && Number(process.env.PORT)// 如果没有指定运行端口，使用 config.dev.port 作为运行端口
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -69,7 +69,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 })
 
 module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = process.env.PORT || config.dev.port
+  portfinder.basePort = process.env.PORT || config.dev.port// 如果没有指定运行端口，使用 config.dev.port 作为运行端口
   portfinder.getPort((err, port) => {
     if (err) {
       reject(err)
